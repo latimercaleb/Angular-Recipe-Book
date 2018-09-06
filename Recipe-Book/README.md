@@ -25,3 +25,10 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+
+--
+Sourcemaps help in Angular development, for mapping directly to the TS file used from the bundle. Easy to use chrome debugger with this.
+
+Navigate to ts files directly in webpack://, ., src, app and then use that to debug
+
+Angular Augury is a chrome extension to help debug injections, component modules, routing trees, etc. Install from chrome store
