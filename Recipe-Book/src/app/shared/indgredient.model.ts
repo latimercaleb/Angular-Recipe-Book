@@ -1,9 +1,4 @@
 export class Indgredient{
-  public name :string;
-  public amount : number;
-
-  constructor(nme: string, amt:number){
-    this.name = nme;
-    this.amount = amt;
-  }
+  constructor(public name: string, public amount:number){}
+  // The above is shorthand for a constructor
 }
