@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Recipe } from './recipe.model';
 
 @Component({
   selector: 'app-recipes',
@@ -6,17 +7,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./recipes.component.css']
 })
 export class RecipesComponent implements OnInit {
-  descriptionName: string;
-  descriptionDetails: string;
+  recipePostClick: Recipe;
   constructor() { }
 
   ngOnInit() {
   }
 
-  detailsParse(details: {carriedName: string, carriedDescription: string}){
-    console.log(`STEP 3: ${details.carriedName} & ${details.carriedDescription}`);
-    this.descriptionName = details.carriedName;
-    this.descriptionDetails = details.carriedDescription;
-    // console.log('Details in parent: ' + details.name + " , " + details.description);
+  mapRecipeDetails(clickedRecipeDetails: Recipe){
+    console.log(`STEP 3, clicked data in parent before property bind: ${clickedRecipeDetails.name} & ${clickedRecipeDetails.description}`);
+    this.recipePostClick = new Recipe(clickedRecipeDetails.name,clickedRecipeDetails.description,clickedRecipeDetails.imagePath);
   }
 }

@@ -8,18 +8,15 @@ import { Recipe } from '../../recipe.model';
 })
 export class RecipeItemComponent implements OnInit {
   @Input() recipe: Recipe;
-  @Output('detailData') details = new EventEmitter<{recipeName: string, recipeDescription: string}>();
+  @Output() customClickEvent = new EventEmitter<void>();
   constructor() { }
 
   ngOnInit() {
   }
 
-  passNameAndDescrip(name: string, description: string){
-    console.log(`STEP 1: Item clicked and emitted from passNameAndDescrip in recipe-item-component to recipe-list component: ${name} or ${description}`);
-     this.details.emit({
-      recipeName: name,
-      recipeDescription: description
-     });
+  recipeItemClicked(){
+    console.log(`STEP 1: Item clicked and emitted from recipeItemClicked in recipe-item-component to recipe-list component`);
+     this.customClickEvent.emit();
   }
 
 }

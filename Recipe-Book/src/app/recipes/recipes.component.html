@@ -1,8 +1,8 @@
 <div class='row'>
   <div class='col-md-7'>
-    <app-recipe-list (detailsProjected)="detailsParse($event)"></app-recipe-list>
+    <app-recipe-list (clickedRecipeData)="mapRecipeDetails($event)"></app-recipe-list>
   </div>
   <div class='col-md-5'>
-    <app-recipe-detail [recipeName]="descriptionName" [recipeDescription]="descriptionDetails"></app-recipe-detail>
+    <app-recipe-detail [selectedRecipe]='recipePostClick'></app-recipe-detail>
   </div>
 </div>
