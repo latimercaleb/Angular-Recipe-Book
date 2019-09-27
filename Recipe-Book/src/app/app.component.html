@@ -1,10 +1,10 @@
-<app-header></app-header>
+<app-header (listChanged) = 'listVisibilityChanged($event)'></app-header>
 <div class="container">
   <div class='row'>
-    <div class='col-md-6'>
+    <div class='col-md-12' *ngIf="!listIsVisible">
       <app-recipes></app-recipes>
     </div>
-    <div class='col-md-6'>
+    <div class='col-md-12' *ngIf="listIsVisible">
       <app-shopping-list></app-shopping-list>
     </div>
   </div>

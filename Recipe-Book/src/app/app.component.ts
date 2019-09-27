@@ -7,4 +7,8 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'app';
+  listIsVisible: boolean;
+  listVisibilityChanged(arg: {listState: boolean}){
+    this.listIsVisible = arg.listState;
+  }
 }
