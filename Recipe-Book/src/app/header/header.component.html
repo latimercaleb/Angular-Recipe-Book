@@ -4,16 +4,13 @@
       <a href='#' class='navbar-brand'>Angular Recipes</a>
     </div>
     <div class='navbar-default'>
-
       <ul class='nav navbar-nav'>
         <li><a href='#' (click)='changeListVisibility(false)'>Recipes</a></li>
         <li><a href='#' (click)='changeListVisibility(true)'>Shopping List</a></li>
       </ul>
-
       <ul class='nav navbar-nav navbar-right'>
-        <li class='dropdown'>
+        <li class='dropdown' appDropdown>
           <a href='#' class='dropdown-toggle' role='button'>Manage State <span class='caret'></span></a>
-
           <ul class='dropdown-menu'>
             <li><a href='#'>Save Data</a></li>
             <li><a href='#'>Fetch Data</a></li>
