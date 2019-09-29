@@ -1,20 +1,22 @@
 import { Component, OnInit } from '@angular/core';
 import { Recipe } from './recipe.model';
+import { RecipeService } from './recipe.service';
 
 @Component({
   selector: 'app-recipes',
   templateUrl: './recipes.component.html',
-  styleUrls: ['./recipes.component.css']
+  styleUrls: ['./recipes.component.css'],
+  providers: [RecipeService]
 })
 export class RecipesComponent implements OnInit {
   recipePostClick: Recipe;
-  constructor() { }
+  constructor(private recipeService: RecipeService) { }
 
   ngOnInit() {
-  }
-
-  mapRecipeDetails(clickedRecipeDetails: Recipe){
-    console.log(`STEP 3, clicked data in parent before property bind: ${clickedRecipeDetails.name} & ${clickedRecipeDetails.description}`);
-    this.recipePostClick = new Recipe(clickedRecipeDetails.name,clickedRecipeDetails.description,clickedRecipeDetails.imagePath);
+    this.recipeService.recipeSelected.subscribe(
+      (recipe: Recipe) => {
+        this.recipePostClick = recipe;
+      }
+    );
   }
 }

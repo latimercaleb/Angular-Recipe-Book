@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Recipe } from '../recipe.model';
+import { ShoppingListService } from 'src/app/shopping-list/shopping-list.service';
 
 @Component({
   selector: 'app-recipe-detail',
@@ -9,10 +10,14 @@ import { Recipe } from '../recipe.model';
 export class RecipeDetailComponent implements OnInit {
   @Input() selectedRecipe: Recipe;
   imageHeight: string = '250px';
-  constructor() { }
+  constructor(private service: ShoppingListService) { }
 
   ngOnInit() {
-    this.selectedRecipe = new Recipe('','Please select a receipe item','')
+    this.selectedRecipe = new Recipe('','Please select a receipe item','',[]);
+  }
+
+  sendIndgredients(){
+    this.service.addIndgredients(this.selectedRecipe.indgredients);
   }
 
 }

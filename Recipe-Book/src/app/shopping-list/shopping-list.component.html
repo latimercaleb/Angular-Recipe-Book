@@ -1,8 +1,8 @@
 <div class='col-md-12'>
-  <app-shopping-edit (ingredientAdded)="newIndgredient($event)"></app-shopping-edit>
+  <app-shopping-edit></app-shopping-edit>
   <hr />
 
   <ul class='list-group'>
-    <a class='list-group-item' style="cursor: pointer;" *ngFor = 'let item of ingredients'>{{item.name}} ({{item.amount}})</a>
+    <a class='list-group-item' style="cursor: pointer;" *ngFor = 'let item of indgredients'>{{item.name}} ({{item.amount}})</a>
   </ul>
 </div>
