@@ -7,17 +7,18 @@ import { Component, OnInit, Output, EventEmitter} from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
   showList: boolean;
-  @Output() listChanged = new EventEmitter <{listState: boolean}>();
+  // @Output() listChanged = new EventEmitter <{listState: boolean}>();
   constructor() { }
 
   ngOnInit() {
     this.showList = false;
   }
 
-  changeListVisibility(arg: boolean){
-    this.showList = arg;
-    this.listChanged.emit({
-      listState: this.showList
-    });
-  }
+  // No longer needed, routing handled by router instead of click events
+  // changeListVisibility(arg: boolean){
+  //   this.showList = arg;
+  //   this.listChanged.emit({
+  //     listState: this.showList
+  //   });
+  // }
 }
