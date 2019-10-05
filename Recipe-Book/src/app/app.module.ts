@@ -14,10 +14,17 @@ import { ShoppingEditComponent } from './shopping-list/shopping-edit/shopping-ed
 import {DropdownDirective} from './shared/dropdown.directive';
 import {ShoppingListService} from './shopping-list/shopping-list.service';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { RecipePlaceholderComponent } from './recipe-placeholder/recipe-placeholder.component';
+import { RecipeEditComponent } from './recipes/recipe-edit/recipe-edit.component';
 
 const routeArr: Routes = [
   {path: '', redirectTo: '/recipes', pathMatch: 'full'},
-  {path: 'recipes', component:RecipesComponent, children: []}, // Finish child routing on this component, load each recipe with recipe/:id
+  {path: 'recipes', component:RecipesComponent, children: [
+    {path: '', component:RecipePlaceholderComponent },
+    {path: 'new', component: RecipeEditComponent},
+    {path: ':id', component:RecipeDetailComponent },
+    {path: ':id/edit', component: RecipeEditComponent}
+  ]},
   {path: 'shopping-list', component:ShoppingListComponent, children:[]},
   {path: 'page-not-found', component: PageNotFoundComponent},
   {path: '**', redirectTo: '/page-not-found'}
@@ -34,7 +41,9 @@ const routeArr: Routes = [
     ShoppingListComponent,
     ShoppingEditComponent,
     DropdownDirective,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    RecipePlaceholderComponent,
+    RecipeEditComponent
   ],
   imports: [
     BrowserModule,

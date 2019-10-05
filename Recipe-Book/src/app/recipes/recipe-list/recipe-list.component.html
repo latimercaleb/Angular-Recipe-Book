@@ -1,11 +1,12 @@
 <div class='row'>
   <div class='col-md-6'>
-    <button class='btn btn-success'>New Recipe</button>
+    <button class='btn btn-success' routerLink='new'>New Recipe</button> <!--Make this link to the edit for new-->
   </div>
 </div>
 <hr />
 <div class='row'>
   <div class='col-xs-12'>
-      <app-recipe-item [recipe]="recipeElem"  *ngFor="let recipeElem of recipes"></app-recipe-item>
+    <!--Could link this routerLink in the child component by using property binding here-->
+      <app-recipe-item [recipe]="recipeElem" [routerLink] = "[idx]"  *ngFor="let recipeElem of recipes; let idx = index"></app-recipe-item>
   </div>
 </div>

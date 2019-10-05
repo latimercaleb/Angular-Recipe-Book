@@ -8,6 +8,7 @@ import { RecipeService } from './recipe.service';
   styleUrls: ['./recipes.component.css'],
   providers: [RecipeService]
 })
+
 export class RecipesComponent implements OnInit {
   recipePostClick: Recipe;
   constructor(private recipeService: RecipeService) { }
