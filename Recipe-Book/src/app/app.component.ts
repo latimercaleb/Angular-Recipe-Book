@@ -6,9 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'app';
-  listIsVisible: boolean;
-  listVisibilityChanged(arg: {listState: boolean}){
-    this.listIsVisible = arg.listState;
-  }
+
 }
