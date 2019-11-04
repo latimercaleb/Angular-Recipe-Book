@@ -7,6 +7,11 @@ export class ShoppingListService{
     ];
 
     indgredientsChanged = new Subject<Indgredient[]>();
+    editStarted = new Subject<number>();
+
+    getIndgredient(id: number){
+        return this.indgredients[id];
+    }
 
     getIndgredients(){
         return this.indgredients;
@@ -21,6 +26,11 @@ export class ShoppingListService{
         newIndgredientList.forEach((indgredient)=>{
             this.indgredients.push(indgredient);
         });
+        this.indgredientsChanged.next(this.indgredients.slice());
+    }
+
+    updateIndgredient(index: number, newIndgredient: Indgredient){
+        this.indgredients[index] = newIndgredient;
         this.indgredientsChanged.next(this.indgredients.slice());
     }
 

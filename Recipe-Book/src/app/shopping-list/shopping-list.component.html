@@ -3,6 +3,6 @@
   <hr />
 
   <ul class='list-group'>
-    <a class='list-group-item' style="cursor: pointer;" *ngFor = 'let item of indgredients'>{{item.name}} ({{item.amount}})</a>
+    <a class='list-group-item' style="cursor: pointer;" *ngFor = 'let item of indgredients; let id = index' (click)="editItem(id)">{{item.name}} ({{item.amount}})</a>
   </ul>
 </div>
