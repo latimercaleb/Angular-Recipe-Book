@@ -37,4 +37,10 @@ export class ShoppingListService{
     removeIndgredient(){
 
     }
+
+    deleteIndgredient(index: number){
+        let deletedIndgredient = this.indgredients.splice(index,1);
+        console.log(`${deletedIndgredient} was removed from shopping list service`);
+        this.indgredientsChanged.next(this.indgredients.slice());
+    }
 }

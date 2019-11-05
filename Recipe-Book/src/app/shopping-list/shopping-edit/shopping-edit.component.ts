@@ -45,12 +45,20 @@ export class ShoppingEditComponent implements OnInit, OnDestroy {
       }else{
         this.shoppingListService.addIndgredient(newIndgredient);
       }
+      this.clearIndgredient();
+      this.editMode = false;
     }
     // const newIndgredient = new Indgredient(this.nameInputRef.nativeElement.value, this.amountInputRef.nativeElement.value);
   }
 
   deleteIndgredient(){
     console.log('Placeholder for delete behavior, my guess is pass index');
+    // Implement delete handler 
+    if(this.editMode == true){
+      this.shoppingListService.deleteIndgredient(this.edittedItemId);
+      this.clearIndgredient();
+      this.editMode = false;
+    }
   }
 
   clearIndgredient(){
