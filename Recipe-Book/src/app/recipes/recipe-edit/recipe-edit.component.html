@@ -1,3 +1,62 @@
-<p>
-  recipe-edit works!
-</p>
+<form>
+  <div class = 'row'>
+    <div class='col-xs-12 btn-toolbar'>
+        <button type="submit" class='btn btn-info'><span class='glyphicon glyphicon-ok'></span> Submit</button>
+        <button type="button" class='btn btn-warning'><span class='glyphicon glyphicon-trash'></span> Cancel</button>
+    </div>
+  </div>
+  <div class='row'>
+    <div class='col-xs-12'>
+      <div class='form-group'>
+        <label for='name'>Name: </label>
+        <input type='text'
+                id='name'
+                name='name'
+                class='form-control'> 
+      </div>
+    </div>
+  </div>
+  <div class='row'>
+    <div class='col-xs-12'>
+      <div class='form-group'>
+        <label for='imagePath'>Image URL: </label>
+        <input type='text'
+               id='imagePath'
+               name='imagePath'
+               class='form-control'> 
+      </div>
+    </div>
+  </div>
+  <div class='row'>
+    <div class='col-xs-12'>
+      <img class='img-responsive' src=''>
+    </div>
+  </div>
+  <div class='row'>
+      <div class='col-xs-12'>
+        <div class='form-group'>
+          <label for='description'>Description:</label>
+          <textarea type='text'
+                 id='description'
+                 name='description'
+                 class='form-control'
+                 rows='6'></textarea> 
+        </div>
+      </div>
+    </div>
+    <div class='row'>
+        <div class='col-xs-12'>
+          <div class='row'>
+            <div class='col-xs-8'>
+              <input type='text' class='form-control'> 
+            </div>
+            <div class='col-xs-2'>
+              <input type='text' class='form-control'> 
+            </div>
+            <div class='col-xs-2'>
+              <button class='btn btn-danger'>X</button>
+            </div>
+          </div>
+        </div>
+      </div>
+</form>
