@@ -48,18 +48,33 @@
       </div>
     </div>
     <div class='row'>
-        <div class='col-xs-12'>
-          <div class='row'>
+        <div class='col-xs-12' formArrayName="indgredients">
+          <div class='row' 
+               *ngFor="let indgredientControl of recipeForm.get('indgredients').controls; let idx = index"
+               [formGroupName]="idx"
+               [ngStyle]="{marginTop: '10px'}">
             <div class='col-xs-8'>
-              <input type='text' class='form-control'> 
+              <input type='text' 
+                     class='form-control' 
+                     formControlName="name"
+                     placeholder="Ingredient Name"> 
             </div>
             <div class='col-xs-2'>
-              <input type='text' class='form-control'> 
+              <input type='text' 
+                     class='form-control' 
+                     formControlName="amount"
+                     placeholder="Amt"> 
             </div>
             <div class='col-xs-2'>
               <button class='btn btn-danger'>X</button>
             </div>
           </div>
+          <div class='row'>
+              <hr>
+              <div class='col-xs-12'>
+                <button type='button' class='btn btn-success'(click)='onAddNewIngredientToSelectedRecipe()'><span class='glyphicon glyphicon-plus'></span> Add New Ingredient</button>
+              </div>
+            </div>
         </div>
       </div>
 </form>
