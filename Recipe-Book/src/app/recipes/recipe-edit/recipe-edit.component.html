@@ -1,7 +1,7 @@
 <form [formGroup] = 'recipeForm' (ngSubmit)='onSubmit()'>
   <div class = 'row'>
     <div class='col-xs-12 btn-toolbar'>
-        <button type="submit" class='btn btn-info'><span class='glyphicon glyphicon-ok'></span> Submit</button>
+        <button type="submit" class='btn btn-info' [disabled]='recipeForm.invalid'><span class='glyphicon glyphicon-ok'></span> Submit</button>
         <button type="button" class='btn btn-warning'><span class='glyphicon glyphicon-trash'></span> Cancel</button>
     </div>
   </div>

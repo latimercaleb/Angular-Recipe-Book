@@ -15,4 +15,12 @@ export class RecipeService{
     getRecipe(id: number): Recipe{
         return this.recipes[id];
     }
+
+    addRecipe(){
+
+    }
+
+    updateRecipe(){
+        
+    }
 }
