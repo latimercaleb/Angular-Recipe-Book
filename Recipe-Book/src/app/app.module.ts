@@ -16,6 +16,7 @@ import {ShoppingListService} from './shopping-list/shopping-list.service';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { RecipePlaceholderComponent } from './recipe-placeholder/recipe-placeholder.component';
 import { RecipeEditComponent } from './recipes/recipe-edit/recipe-edit.component';
+import { RecipeService } from './recipes/recipe.service';
 
 const routeArr: Routes = [
   {path: '', redirectTo: '/recipes', pathMatch: 'full'},
@@ -51,7 +52,7 @@ const routeArr: Routes = [
     ReactiveFormsModule,
     RouterModule.forRoot(routeArr)
   ],
-  providers: [ShoppingListService],
+  providers: [ShoppingListService, RecipeService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
