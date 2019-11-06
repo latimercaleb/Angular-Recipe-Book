@@ -67,7 +67,9 @@
                      placeholder="Amt"> 
             </div>
             <div class='col-xs-2'>
-              <button class='btn btn-danger'>X</button>
+              <button type='button'
+                      class='btn btn-danger'
+                      (click)='onDeleteIngredient(idx)'>X</button>
             </div>
           </div>
           <div class='row'>
