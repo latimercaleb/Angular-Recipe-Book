@@ -2,7 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { FormGroup, FormControl, FormArray, Validators } from '@angular/forms';
 import { RecipeService } from '../recipe.service';
-
+import { Recipe } from '../recipe.model';
+// 3 tasks delete button, works
+// Cancel button should work, navigate away
+// Save should save and navigate away 
 @Component({
   selector: 'app-recipe-edit',
   templateUrl: './recipe-edit.component.html',
@@ -56,6 +59,17 @@ export class RecipeEditComponent implements OnInit {
 
   onSubmit(){
     console.log(this.recipeForm);
+    const newRecipe = new Recipe(
+      this.recipeForm.value.name, 
+      this.recipeForm.value.description,
+      this.recipeForm.value.imagePath,
+      this.recipeForm.value.indgredients
+      );
+    if(this.editModeEnabled){
+      this.recipeService.updateRecipe(this.id,newRecipe); // Could pass value directly here, without making it a const
+    }else{
+      this.recipeService.addRecipe(newRecipe);
+    }
   }
   
   onAddNewIngredientToSelectedRecipe(){
