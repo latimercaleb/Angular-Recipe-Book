@@ -22,7 +22,7 @@ export class HeaderComponent implements OnInit {
 
   onGet(){
     console.log('Attempting GET request header.ts');
-    this.dataService.getRecipeData();
+    this.dataService.getRecipeData().subscribe();
   }
 
   // No longer needed, routing handled by router instead of click events

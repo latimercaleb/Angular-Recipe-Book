@@ -19,6 +19,8 @@ import { RecipePlaceholderComponent } from './recipe-placeholder/recipe-placehol
 import { RecipeEditComponent } from './recipes/recipe-edit/recipe-edit.component';
 import { RecipeService } from './recipes/recipe.service';
 import { RecipeDataService } from './shared/recipeData.service';
+import { RecipeResolverService } from './recipes/recipe-resolver.service';
+import { AuthComponent } from './auth/auth.component';
 
 
 const routeArr: Routes = [
@@ -26,10 +28,11 @@ const routeArr: Routes = [
   {path: 'recipes', component:RecipesComponent, children: [
     {path: '', component:RecipePlaceholderComponent },
     {path: 'new', component: RecipeEditComponent},
-    {path: ':id', component:RecipeDetailComponent },
-    {path: ':id/edit', component: RecipeEditComponent}
+    {path: ':id', component:RecipeDetailComponent, resolve: [RecipeResolverService] },
+    {path: ':id/edit', component: RecipeEditComponent, resolve: [RecipeResolverService] }
   ]},
   {path: 'shopping-list', component:ShoppingListComponent, children:[]},
+  {path: 'login', component:AuthComponent},
   {path: 'page-not-found', component: PageNotFoundComponent},
   {path: '**', redirectTo: '/page-not-found'}
 ];
@@ -47,7 +50,8 @@ const routeArr: Routes = [
     DropdownDirective,
     PageNotFoundComponent,
     RecipePlaceholderComponent,
-    RecipeEditComponent
+    RecipeEditComponent,
+    AuthComponent
   ],
   imports: [
     BrowserModule,

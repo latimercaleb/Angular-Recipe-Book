@@ -2,17 +2,32 @@ import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { RecipeService } from "../recipes/recipe.service";
 import { Recipe } from '../recipes/recipe.model';
+import { map, tap } from 'rxjs/operators';
 @Injectable({
     providedIn: 'root'
 })
 export class RecipeDataService{
     constructor(private http: HttpClient, private recipesService: RecipeService){}
     getRecipeData(){
-        return this.http.get<Recipe[]>('https://angular-recipe-be.firebaseio.com/recipes.json').subscribe(
-            (response) => {
-                this.recipesService.loadRecipes(response);
-            }
-        );
+        return this.http.get<Recipe[]>('https://angular-recipe-be.firebaseio.com/recipes.json')
+        .pipe(map( recipes =>{
+            return recipes.map((recipe, idx) => {
+                if(recipe != null){
+                    return {... recipe, indgredients: recipe.indgredients ? recipe.indgredients: []};
+                }else{
+                    console.log(`Object at ${idx} was deleted from database`);
+                    return {
+                        description: 'Item was deleted',
+                        imagePath: 'https://bloximages.chicago2.vip.townnews.com/ncnewsonline.com/content/tncms/assets/v3/editorial/5/70/570c3871-56b3-5883-b05e-f5963c507a57/54012dc24880f.image.jpg?resize=500%2C657',
+                        name: 'Deleted from Database',
+                        indgredients: []
+                    }
+                }
+            });
+        }),
+        tap(recipes=> {
+            this.recipesService.loadRecipes(recipes);
+        }));
     }
 
     saveRecipeData(){
