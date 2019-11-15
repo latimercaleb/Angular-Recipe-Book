@@ -18,6 +18,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { RecipePlaceholderComponent } from './recipe-placeholder/recipe-placeholder.component';
 import { RecipeEditComponent } from './recipes/recipe-edit/recipe-edit.component';
 import { RecipeService } from './recipes/recipe.service';
+import { RecipeDataService } from './shared/recipeData.service';
 
 
 const routeArr: Routes = [
@@ -55,7 +56,7 @@ const routeArr: Routes = [
     HttpClientModule,
     RouterModule.forRoot(routeArr)
   ],
-  providers: [ShoppingListService, RecipeService],
+  providers: [ShoppingListService, RecipeService, RecipeDataService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

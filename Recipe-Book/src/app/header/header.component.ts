@@ -1,4 +1,5 @@
 import { Component, OnInit, Output, EventEmitter} from '@angular/core';
+import { RecipeDataService } from '../shared/recipeData.service';
 
 @Component({
   selector: 'app-header',
@@ -8,10 +9,20 @@ import { Component, OnInit, Output, EventEmitter} from '@angular/core';
 export class HeaderComponent implements OnInit {
   showList: boolean;
   // @Output() listChanged = new EventEmitter <{listState: boolean}>();
-  constructor() { }
+  constructor(private dataService: RecipeDataService) { }
 
   ngOnInit() {
     this.showList = false;
+  }
+
+  onSave(){
+    console.log('Attempting PUT request header.ts');
+    this.dataService.saveRecipeData();
+  }
+
+  onGet(){
+    console.log('Attempting GET request header.ts');
+    this.dataService.getRecipeData();
   }
 
   // No longer needed, routing handled by router instead of click events
