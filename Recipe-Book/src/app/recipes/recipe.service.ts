@@ -31,4 +31,9 @@ export class RecipeService{
         this.recipes.splice(indexToDelete,1);
         this.recipesAddedOrChanged.next(this.recipes.slice());
     }
+
+    loadRecipes(recipes: Recipe[]){
+        this.recipes = recipes;
+        this.recipesAddedOrChanged.next(this.recipes.slice()); // Inform other components of changes from HTTP
+    }
 }
