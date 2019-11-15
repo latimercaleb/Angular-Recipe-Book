@@ -1,18 +1,30 @@
 <!-- Build login page, needs styling-->
 <div class='row'>
-  <div clas='col-xs-12 col-md-6-offset-3'>
+  <div class='col-md-4 col-md-offset-2 well bisque-bg'>
     <form>
       <div class='form-group'>
         <label for='email'>Email</label>
-        <input type='email' id='email' class='form-control'/>
+        <input type='email' 
+               id='email' 
+               class='form-control'/>
       </div>
       <div class='form-group'>
         <label for='password'>Password</label>
-        <input type='password' id='password' class='form-control'/>
+        <input type='password' 
+               id='password' 
+               class='form-control'/>
       </div>
       <div>
-        <button class='btn btn-info'>Register</button> | 
-        <button class='btn btn-primary'>Login</button>
+        <button class='btn btn-info' type='submit'>
+          <span class='glyphicon' 
+                [ngClass]="{'glyphicon-pencil': loginSelected==false, 
+                            'glyphicon-log-in': loginSelected}"></span> 
+            {{loginSelected ? 'Login' : 'Register'}}
+        </button> | 
+        <button class='btn btn-primary' (click)='swapMode()' type='button'>
+          <span class='glyphicon glyphicon-repeat'></span>
+          {{loginSelected ? 'Change to Register Mode' : 'Change to Login Mode'}}
+        </button>
       </div>
     </form>
   </div>

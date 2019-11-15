@@ -6,8 +6,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./auth.component.css']
 })
 export class AuthComponent implements OnInit {
+  loginSelected: boolean;
 
-  constructor() { }
+  constructor() {
+    this.loginSelected = true; // Login page is set by defaul
+   }
+
+   swapMode(){
+     this.loginSelected = !this.loginSelected;
+   }
 
   ngOnInit() {
   }
