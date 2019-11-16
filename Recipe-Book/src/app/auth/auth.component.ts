@@ -10,7 +10,7 @@ export class AuthComponent implements OnInit {
   loginSelected: boolean;
 
   constructor() {
-    this.loginSelected = true; // Login page is set by defaul
+    this.loginSelected = true; // Login page is set by default
    }
 
    swapMode(){
