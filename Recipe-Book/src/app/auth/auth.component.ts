@@ -40,6 +40,8 @@ export class AuthComponent implements OnInit {
           this.error = errMessage;
         }
       );
+    }else if (loginData.valid && this.loginSelected){
+      // Implement login component behavior
     }
     loginData.reset();
   }
