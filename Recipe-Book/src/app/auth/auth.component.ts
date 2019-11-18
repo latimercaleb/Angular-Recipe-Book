@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { AuthServiceService } from './auth-service.service';
 
 @Component({
   selector: 'app-auth',
@@ -9,7 +10,7 @@ import { NgForm } from '@angular/forms';
 export class AuthComponent implements OnInit {
   loginSelected: boolean;
 
-  constructor() {
+  constructor(private authService: AuthServiceService) {
     this.loginSelected = true; // Login page is set by default
    }
 
