@@ -1,7 +1,13 @@
 <!-- Build login page, needs styling-->
 <div class='row'>
   <div class='col-md-4 col-md-offset-2 well bisque-bg'>
-    <form #loginForm='ngForm' (ngSubmit)='processAuthRequest(loginForm)'>
+    <div class='alert alert-danger' *ngIf = "error?.length > 0">
+      <p>{{error}}</p>
+    </div>
+    <div class='col-md-4 col-md-offset-2' *ngIf = "loading">
+      <app-loading></app-loading>
+    </div>
+    <form #loginForm='ngForm' (ngSubmit)='processAuthRequest(loginForm)' *ngIf = "!loading">
       <div class='form-group'>
         <label for='email'>Email</label>
         <input type='email' 

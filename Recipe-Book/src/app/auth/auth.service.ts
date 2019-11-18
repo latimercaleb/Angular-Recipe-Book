@@ -12,7 +12,7 @@ interface AuthResponse {
 @Injectable({
   providedIn: 'root'
 })
-export class AuthServiceService {
+export class AuthService {
 
   constructor(private http: HttpClient) { }
 

@@ -21,6 +21,7 @@ import { RecipeService } from './recipes/recipe.service';
 import { RecipeDataService } from './shared/recipeData.service';
 import { RecipeResolverService } from './recipes/recipe-resolver.service';
 import { AuthComponent } from './auth/auth.component';
+import { Loader } from './shared/loader.component';
 
 
 const routeArr: Routes = [
@@ -51,7 +52,8 @@ const routeArr: Routes = [
     PageNotFoundComponent,
     RecipePlaceholderComponent,
     RecipeEditComponent,
-    AuthComponent
+    AuthComponent,
+    Loader
   ],
   imports: [
     BrowserModule,

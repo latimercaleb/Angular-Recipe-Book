@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { AuthServiceService } from './auth-service.service';
+import { AuthService } from './auth.service';
 
 @Component({
   selector: 'app-auth',
@@ -9,9 +9,12 @@ import { AuthServiceService } from './auth-service.service';
 })
 export class AuthComponent implements OnInit {
   loginSelected: boolean;
-
-  constructor(private authService: AuthServiceService) {
+  loading: boolean;
+  error: string;
+  constructor(private authService: AuthService) {
     this.loginSelected = true; // Login page is set by default
+    this.loading = false;
+    this.error = null;
    }
 
    swapMode(){
@@ -23,6 +26,23 @@ export class AuthComponent implements OnInit {
 
   processAuthRequest(loginData: NgForm){
     console.log(`Form submitted w/: ${JSON.stringify(loginData.value)}`);
+    if (loginData.valid && this.loginSelected == false){
+      let email = loginData.value.email;
+      let pass = loginData.value.password;
+      this.loading = true;
+      this.authService.register(email,pass).subscribe(
+        response => {
+          console.log(response);
+          this.loading = false;
+        },
+        err => {
+          console.log('Error has occured');
+          console.log(err);
+          this.loading = false;
+          this.error = 'An error has been triggered!';
+        }
+      );
+    }
     loginData.reset();
   }
 
