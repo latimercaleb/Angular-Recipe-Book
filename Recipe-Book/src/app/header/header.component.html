@@ -5,15 +5,15 @@
     </div>
     <div class='navbar-default'>
       <ul class='nav navbar-nav'>
-        <li routerLinkActive='active'><a routerLink='/login'>Login</a></li>
-        <li routerLinkActive='active'><a routerLink='/recipes'>Recipes</a></li>
+        <li routerLinkActive='active' *ngIf='!loggedIn'><a routerLink='/login'>Login</a></li>
+        <li routerLinkActive='active' *ngIf='loggedIn'><a routerLink='/recipes'>Recipes</a></li>
         <li routerLinkActive='active'><a routerLink='/shopping-list'>Shopping List</a></li>
       </ul>
       <ul class='nav navbar-nav navbar-right'>
-        <li>
+        <li *ngIf='loggedIn'>
           <a>Logout</a>
         </li>
-        <li class='dropdown' appDropdown>
+        <li class='dropdown' appDropdown *ngIf='loggedIn'> 
           <a class='dropdown-toggle' role='button'>Manage State <span class='caret'></span></a>
           <ul class='dropdown-menu'>
             <li><a (click)='onSave()'>Save Data</a></li>

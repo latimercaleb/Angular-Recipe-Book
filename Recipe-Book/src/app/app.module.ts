@@ -25,7 +25,7 @@ import { Loader } from './shared/loader.component';
 
 
 const routeArr: Routes = [
-  {path: '', redirectTo: '/recipes', pathMatch: 'full'},
+  {path: '', redirectTo: '/login', pathMatch: 'full'},
   {path: 'recipes', component:RecipesComponent, children: [
     {path: '', component:RecipePlaceholderComponent },
     {path: 'new', component: RecipeEditComponent},

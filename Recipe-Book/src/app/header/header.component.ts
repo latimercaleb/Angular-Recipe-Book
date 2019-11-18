@@ -1,5 +1,7 @@
-import { Component, OnInit, Output, EventEmitter} from '@angular/core';
+import { Component, OnInit, OnDestroy} from '@angular/core';
 import { RecipeDataService } from '../shared/recipeData.service';
+import { AuthService } from '../auth/auth.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-header',
@@ -8,11 +10,19 @@ import { RecipeDataService } from '../shared/recipeData.service';
 })
 export class HeaderComponent implements OnInit {
   showList: boolean;
+  private userSubscription: Subscription;
+  loggedIn: boolean;
   // @Output() listChanged = new EventEmitter <{listState: boolean}>();
-  constructor(private dataService: RecipeDataService) { }
+  constructor(private dataService: RecipeDataService, private authService: AuthService) { }
 
   ngOnInit() {
     this.showList = false;
+    this.loggedIn = false
+    this.userSubscription = this.authService.user.subscribe(
+      user => {
+        this.loggedIn = !user ? false : true; 
+      }
+    );
   }
 
   onSave(){
@@ -23,6 +33,10 @@ export class HeaderComponent implements OnInit {
   onGet(){
     console.log('Attempting GET request header.ts');
     this.dataService.getRecipeData().subscribe();
+  }
+
+  ngOnDestroy(){
+    this.userSubscription.unsubscribe();
   }
 
   // No longer needed, routing handled by router instead of click events
