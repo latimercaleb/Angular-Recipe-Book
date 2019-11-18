@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { catchError } from 'rxjs/operators';
-import { throwError } from 'rxjs';
+import { catchError, tap } from 'rxjs/operators';
+import { throwError, Subject } from 'rxjs';
+import { User } from './user.model';
 
 export interface AuthResponse {
   idToken: string,
@@ -16,23 +17,53 @@ export interface AuthResponse {
   providedIn: 'root'
 })
 export class AuthService {
-
+  user = new Subject<User>();
   constructor(private http: HttpClient) { }
 
   register(email: string, pass: string){
     return this.http.post<AuthResponse>('https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyDRou91UtXy0Lb_PPU8BOFvjId4d_lKyMs', 
     {email: email, password: pass, returnSecureToken: true})
-    .pipe(catchError(this.customErrorHandler));
+    .pipe(catchError(this.customErrorHandler), 
+      tap(responseData => {
+        this.authenticate(
+          responseData.email, 
+          responseData.localId,
+          responseData.idToken,
+          parseInt(responseData.expiresIn)
+          );
+    }));
   }
 
   login(email: string, pass: string){
     return this.http.post<AuthResponse>('https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyDRou91UtXy0Lb_PPU8BOFvjId4d_lKyMs',
     {email: email, password: pass, returnSecureToken: true})
-    .pipe(catchError(this.customErrorHandler));
+    .pipe(catchError(this.customErrorHandler), 
+      tap(responseData => {
+          this.authenticate(
+            responseData.email, 
+            responseData.localId,
+            responseData.idToken,
+            parseInt(responseData.expiresIn)
+          );
+        })
+    );
   }
 
   logout(){
 
+  }
+
+  private authenticate(email: string, localId: string, idToken: string, expires: number){
+    const expiresIn = new Date(
+      new Date().getTime() + expires * 1000
+    );
+    const user = new User(
+      email, 
+      localId, 
+      idToken, 
+      expiresIn
+    );
+    this.user.next(user); 
   }
 
   private customErrorHandler(errorObject: HttpErrorResponse){
