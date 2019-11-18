@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { AuthService, AuthResponse } from './auth.service';
 import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-auth',
@@ -14,7 +15,7 @@ export class AuthComponent implements OnInit {
   error: string;
   authObserver: Observable<AuthResponse>;
 
-  constructor(private authService: AuthService) {
+  constructor(private authService: AuthService, private router: Router) {
     this.loginSelected = true; // Login page is set by default
     this.loading = false;
     this.error = null;
@@ -47,6 +48,7 @@ export class AuthComponent implements OnInit {
         console.log(response);
         this.loading = false;
         this.error = null;
+        this.router.navigate(['/recipes']);
       },
       errMessage => {
         this.loading = false;

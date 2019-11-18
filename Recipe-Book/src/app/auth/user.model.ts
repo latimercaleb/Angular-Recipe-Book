@@ -2,14 +2,14 @@ export class User{
     constructor(
         public email: string, 
         public id: string, 
-        private token: string, 
-        private tokenExpirationDate: Date){}
+        private _token: string, 
+        private _tokenExpirationDate: Date){}
     
     get token(){
         // Token is expired
-        if(!this.tokenExpirationDate || new Date() > this.tokenExpirationDate){
+        if(!this._tokenExpirationDate || new Date() > this._tokenExpirationDate){
             return null;
         }
-        return this.token;
+        return this._token;
     }
 }
