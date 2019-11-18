@@ -41,7 +41,20 @@ export class AuthComponent implements OnInit {
         }
       );
     }else if (loginData.valid && this.loginSelected){
-      // Implement login component behavior
+      let email = loginData.value.email;
+      let pass = loginData.value.password;
+      this.loading = true;
+      this.authService.login(email,pass).subscribe(
+        response => {
+          console.log('Success');
+          console.log(response);
+          this.loading = false;
+        },
+        errMessage => {
+          this.loading = false;
+          this.error = errMessage;
+        }
+      );
     }
     loginData.reset();
   }
