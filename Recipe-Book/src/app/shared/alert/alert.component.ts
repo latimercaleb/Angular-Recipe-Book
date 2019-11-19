@@ -9,7 +9,9 @@ import { Component, Input, Output,EventEmitter } from "@angular/core";
 export class AlertComponent{
     @Input() message: string;
     @Output() closeAlert: EventEmitter<void> = new EventEmitter();
+
     constructor(){}
+    
     onClose(){
         this.closeAlert.emit();
     }
