@@ -58,4 +58,8 @@ export class AuthComponent implements OnInit {
     loginData.reset();
   }
 
+  resolveError(){
+    this.error = null;
+  }
+
 }

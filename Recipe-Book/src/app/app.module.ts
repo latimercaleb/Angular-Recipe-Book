@@ -24,7 +24,7 @@ import { AuthComponent } from './auth/auth.component';
 import { Loader } from './shared/loader.component';
 import { AuthInterceptorService } from './auth/auth-interceptor.service';
 import { AuthGuard } from './auth/auth.guard';
-
+import { AlertComponent } from './shared/alert/alert.component';
 
 const routeArr: Routes = [
   {path: '', redirectTo: '/login', pathMatch: 'full'},
@@ -55,7 +55,8 @@ const routeArr: Routes = [
     RecipePlaceholderComponent,
     RecipeEditComponent,
     AuthComponent,
-    Loader
+    Loader,
+    AlertComponent
   ],
   imports: [
     BrowserModule,

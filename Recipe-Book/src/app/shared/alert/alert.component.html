@@ -1,3 +1,9 @@
-<div>
+<div class='backdrop' (click)='onClose()'>
     
+</div>
+<div class='alert-box'>
+    <p>{{message}}</p>
+    <div class='alert-box-actions'>
+        <button class='btn btn-info' (click)='onClose()'><span class='glyphicon glyphicon-remove'></span> Close</button>
+    </div>
 </div>
