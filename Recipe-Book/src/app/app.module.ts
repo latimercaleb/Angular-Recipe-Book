@@ -25,6 +25,7 @@ import { Loader } from './shared/loader.component';
 import { AuthInterceptorService } from './auth/auth-interceptor.service';
 import { AuthGuard } from './auth/auth.guard';
 import { AlertComponent } from './shared/alert/alert.component';
+import { PlaceholderDirective } from './shared/placeholder.directive';
 
 const routeArr: Routes = [
   {path: '', redirectTo: '/login', pathMatch: 'full'},
@@ -56,7 +57,8 @@ const routeArr: Routes = [
     RecipeEditComponent,
     AuthComponent,
     Loader,
-    AlertComponent
+    AlertComponent,
+    PlaceholderDirective
   ],
   imports: [
     BrowserModule,
@@ -67,6 +69,9 @@ const routeArr: Routes = [
   ],
   providers: [ShoppingListService, RecipeService, RecipeDataService, 
     {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true}],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [
+    AlertComponent
+  ]
 })
 export class AppModule { }

@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ComponentFactoryResolver, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { AuthService, AuthResponse } from './auth.service';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
+import { AlertComponent } from '../shared/alert/alert.component';
+import { PlaceholderDirective } from '../shared/placeholder.directive';
 
 @Component({
   selector: 'app-auth',
@@ -14,8 +16,9 @@ export class AuthComponent implements OnInit {
   loading: boolean;
   error: string;
   authObserver: Observable<AuthResponse>;
+  @ViewChild(PlaceholderDirective) alertWrapper: PlaceholderDirective;
 
-  constructor(private authService: AuthService, private router: Router) {
+  constructor(private authService: AuthService, private router: Router, private cmpFactResolver: ComponentFactoryResolver) {
     this.loginSelected = true; // Login page is set by default
     this.loading = false;
     this.error = null;
@@ -53,6 +56,7 @@ export class AuthComponent implements OnInit {
       errMessage => {
         this.loading = false;
         this.error = errMessage;
+        this.showErrAlert(errMessage); // Programatic approach
       }
     );
     loginData.reset();
@@ -60,6 +64,15 @@ export class AuthComponent implements OnInit {
 
   resolveError(){
     this.error = null;
+  }
+
+  private showErrAlert(errorString: string){
+    // const alrtCmp = new AlertComponent(); // This makes a new JS object, but not an Angular component, the fix? Allow angular to create it with component factory
+    const alertFactory = this.cmpFactResolver.resolveComponentFactory(AlertComponent);
+    const viewContainer = this.alertWrapper.viewContainerRef;
+    viewContainer.clear();
+    viewContainer.createComponent(alertFactory);
+
   }
 
 }
