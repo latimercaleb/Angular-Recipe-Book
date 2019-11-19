@@ -55,6 +55,16 @@ export class AuthService {
     this.router.navigate(['/login']);
   }
 
+  autoLogin(){
+    if(localStorage.length > 0){
+      const userData = JSON.parse(localStorage.getItem('userData'));
+      const storedUser: User = new User(userData.email, userData.id, userData._token, new Date(userData._tokenExpirationDate));
+      if(storedUser.token){
+        this.user.next(storedUser);
+      }
+    }
+  }
+
   private authenticate(email: string, localId: string, idToken: string, expires: number){
     const expiresIn = new Date(
       new Date().getTime() + expires * 1000
