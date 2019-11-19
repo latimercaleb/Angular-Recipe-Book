@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {Routes, RouterModule } from '@angular/router';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
@@ -22,6 +22,7 @@ import { RecipeDataService } from './shared/recipeData.service';
 import { RecipeResolverService } from './recipes/recipe-resolver.service';
 import { AuthComponent } from './auth/auth.component';
 import { Loader } from './shared/loader.component';
+import { AuthInterceptorService } from './auth/auth-interceptor.service';
 
 
 const routeArr: Routes = [
@@ -62,7 +63,8 @@ const routeArr: Routes = [
     HttpClientModule,
     RouterModule.forRoot(routeArr)
   ],
-  providers: [ShoppingListService, RecipeService, RecipeDataService],
+  providers: [ShoppingListService, RecipeService, RecipeDataService, 
+    {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
