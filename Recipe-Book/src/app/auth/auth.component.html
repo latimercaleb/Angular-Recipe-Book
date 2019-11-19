@@ -6,9 +6,7 @@
     </div> Using custom alert component now-->
     <!-- Dynamic via ngIf: <app-alert [message]='error' *ngIf='error?.length > 0' (closeAlert)='resolveError()'></app-alert> -->
     <!--Dynamic via programmatic dynamic component-->
-    <ng-template appAlertPlaceholder>
-
-    </ng-template>
+    <ng-template appAlertPlaceholder></ng-template>
     <div class='col-md-4 col-md-offset-2' *ngIf = "loading">
       <app-loading></app-loading>
     </div>

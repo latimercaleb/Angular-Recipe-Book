@@ -1,7 +1,7 @@
-import { Component, OnInit, ComponentFactoryResolver, ViewChild } from '@angular/core';
+import { Component, OnInit, ComponentFactoryResolver, ViewChild, OnDestroy } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { AuthService, AuthResponse } from './auth.service';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { Router } from '@angular/router';
 import { AlertComponent } from '../shared/alert/alert.component';
 import { PlaceholderDirective } from '../shared/placeholder.directive';
@@ -11,12 +11,13 @@ import { PlaceholderDirective } from '../shared/placeholder.directive';
   templateUrl: './auth.component.html',
   styleUrls: ['./auth.component.css']
 })
-export class AuthComponent implements OnInit {
+export class AuthComponent implements OnInit, OnDestroy {
   loginSelected: boolean;
   loading: boolean;
   error: string;
   authObserver: Observable<AuthResponse>;
   @ViewChild(PlaceholderDirective) alertWrapper: PlaceholderDirective;
+  private closeErrorAlert: Subscription;
 
   constructor(private authService: AuthService, private router: Router, private cmpFactResolver: ComponentFactoryResolver) {
     this.loginSelected = true; // Login page is set by default
@@ -71,8 +72,19 @@ export class AuthComponent implements OnInit {
     const alertFactory = this.cmpFactResolver.resolveComponentFactory(AlertComponent);
     const viewContainer = this.alertWrapper.viewContainerRef;
     viewContainer.clear();
-    viewContainer.createComponent(alertFactory);
+    const newComponentRefference = viewContainer.createComponent(alertFactory);
+    newComponentRefference.instance.message = errorString;
+    this.closeErrorAlert = newComponentRefference.instance.closeAlert.subscribe(
+      () => {
+        this.closeErrorAlert.unsubscribe();
+        viewContainer.clear();
+      });
+  }
 
+  ngOnDestroy(){
+    if(this.closeErrorAlert){
+      this.closeErrorAlert.unsubscribe();
+    }
   }
 
 }
