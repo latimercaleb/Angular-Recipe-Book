@@ -39,6 +39,10 @@ export class HeaderComponent implements OnInit {
     this.userSubscription.unsubscribe();
   }
 
+  onLogOut(){
+    this.authService.logout();
+  }
+
   // No longer needed, routing handled by router instead of click events
   // changeListVisibility(arg: boolean){
   //   this.showList = arg;

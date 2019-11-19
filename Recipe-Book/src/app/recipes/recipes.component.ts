@@ -12,6 +12,6 @@ export class RecipesComponent implements OnInit {
   constructor(private dataService: RecipeDataService) { }
 
   ngOnInit() {
-    // this.dataService.getRecipeData();
+    this.dataService.getRecipeData();
   }
 }
