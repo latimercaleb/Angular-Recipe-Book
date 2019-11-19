@@ -53,12 +53,14 @@ export class AuthService {
 
   logout(){
     this.user.next(null);
-    localStorage.clear();
+    this.router.navigate(['/login']);
+    localStorage.removeItem('userData');
+    console.log('Logging out');
+    console.log(this.tokenExpirationTimer);
     if (this.tokenExpirationTimer){
       clearTimeout(this.tokenExpirationTimer);
     }
     this.tokenExpirationTimer = null;
-    this.router.navigate(['/login']);
   }
 
   autoLogin(){
@@ -68,7 +70,7 @@ export class AuthService {
       if(storedUser.token){
         this.user.next(storedUser);
         let tokenExpirationTimeInMS = new Date(userData._tokenExpirationDate).getTime() - new Date().getTime();
-        this.autoLogout(tokenExpirationTimeInMS* 1000);
+        this.autoLogout(tokenExpirationTimeInMS);
       }
     }
   }

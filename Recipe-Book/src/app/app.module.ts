@@ -23,11 +23,12 @@ import { RecipeResolverService } from './recipes/recipe-resolver.service';
 import { AuthComponent } from './auth/auth.component';
 import { Loader } from './shared/loader.component';
 import { AuthInterceptorService } from './auth/auth-interceptor.service';
+import { AuthGuard } from './auth/auth.guard';
 
 
 const routeArr: Routes = [
   {path: '', redirectTo: '/login', pathMatch: 'full'},
-  {path: 'recipes', component:RecipesComponent, children: [
+  {path: 'recipes', component:RecipesComponent, canActivate: [AuthGuard], children: [
     {path: '', component:RecipePlaceholderComponent },
     {path: 'new', component: RecipeEditComponent},
     {path: ':id', component:RecipeDetailComponent, resolve: [RecipeResolverService] },
