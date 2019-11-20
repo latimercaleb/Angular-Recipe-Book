@@ -1,7 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {Routes, RouterModule } from '@angular/router';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
@@ -19,27 +18,13 @@ import { RecipePlaceholderComponent } from './recipe-placeholder/recipe-placehol
 import { RecipeEditComponent } from './recipes/recipe-edit/recipe-edit.component';
 import { RecipeService } from './recipes/recipe.service';
 import { RecipeDataService } from './shared/recipeData.service';
-import { RecipeResolverService } from './recipes/recipe-resolver.service';
 import { AuthComponent } from './auth/auth.component';
 import { Loader } from './shared/loader.component';
 import { AuthInterceptorService } from './auth/auth-interceptor.service';
-import { AuthGuard } from './auth/auth.guard';
 import { AlertComponent } from './shared/alert/alert.component';
 import { PlaceholderDirective } from './shared/placeholder.directive';
+import { AppRoutingModule } from './app.routing.module';
 
-const routeArr: Routes = [
-  {path: '', redirectTo: '/login', pathMatch: 'full'},
-  {path: 'recipes', component:RecipesComponent, canActivate: [AuthGuard], children: [
-    {path: '', component:RecipePlaceholderComponent },
-    {path: 'new', component: RecipeEditComponent},
-    {path: ':id', component:RecipeDetailComponent, resolve: [RecipeResolverService] },
-    {path: ':id/edit', component: RecipeEditComponent, resolve: [RecipeResolverService] }
-  ]},
-  {path: 'shopping-list', component:ShoppingListComponent, children:[]},
-  {path: 'login', component:AuthComponent},
-  {path: 'page-not-found', component: PageNotFoundComponent},
-  {path: '**', redirectTo: '/page-not-found'}
-];
 
 @NgModule({
   declarations: [
@@ -65,7 +50,7 @@ const routeArr: Routes = [
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    RouterModule.forRoot(routeArr)
+    AppRoutingModule
   ],
   providers: [ShoppingListService, RecipeService, RecipeDataService, 
     {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true}],
