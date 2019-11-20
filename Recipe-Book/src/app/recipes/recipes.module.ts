@@ -8,7 +8,6 @@ import { RecipeEditComponent } from "./recipe-edit/recipe-edit.component";
 import { CommonModule } from "@angular/common";
 import { ReactiveFormsModule } from "@angular/forms";
 import { RouterModule } from "@angular/router";
-import { AuthGuard } from "../auth/auth.guard";
 import { RecipeRoutingModule } from "./recipe-routing.module";
 
 
