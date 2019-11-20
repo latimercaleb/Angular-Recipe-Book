@@ -19,6 +19,7 @@ import { AlertComponent } from './shared/alert/alert.component';
 import { PlaceholderDirective } from './shared/placeholder.directive';
 import { AppRoutingModule } from './app-routing.module';
 import { RecipesModule } from './recipes/recipes.module';
+import { ShoppingListModule } from './shopping-list/shopping-list.module';
 
 
 @NgModule({
@@ -26,8 +27,7 @@ import { RecipesModule } from './recipes/recipes.module';
     AppComponent,
     HeaderComponent,
 
-    ShoppingListComponent,
-    ShoppingEditComponent,
+
     DropdownDirective,
     PageNotFoundComponent,
 
@@ -42,6 +42,7 @@ import { RecipesModule } from './recipes/recipes.module';
     ReactiveFormsModule,
     HttpClientModule,
     RecipesModule,
+    ShoppingListModule,
     AppRoutingModule
   ],
   providers: [ShoppingListService, RecipeService, RecipeDataService, 
