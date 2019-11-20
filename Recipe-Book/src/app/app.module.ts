@@ -23,23 +23,20 @@ import { Loader } from './shared/loader.component';
 import { AuthInterceptorService } from './auth/auth-interceptor.service';
 import { AlertComponent } from './shared/alert/alert.component';
 import { PlaceholderDirective } from './shared/placeholder.directive';
-import { AppRoutingModule } from './app.routing.module';
+import { AppRoutingModule } from './app-routing.module';
+import { RecipesModule } from './recipes/recipes.module';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    RecipesComponent,
-    RecipeListComponent,
-    RecipeDetailComponent,
-    RecipeItemComponent,
+
     ShoppingListComponent,
     ShoppingEditComponent,
     DropdownDirective,
     PageNotFoundComponent,
-    RecipePlaceholderComponent,
-    RecipeEditComponent,
+
     AuthComponent,
     Loader,
     AlertComponent,
@@ -50,6 +47,7 @@ import { AppRoutingModule } from './app.routing.module';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    RecipesModule,
     AppRoutingModule
   ],
   providers: [ShoppingListService, RecipeService, RecipeDataService, 

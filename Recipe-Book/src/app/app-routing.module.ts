@@ -13,12 +13,6 @@ import { PageNotFoundComponent } from "./page-not-found/page-not-found.component
 
 const routeArr: Routes = [
     {path: '', redirectTo: '/login', pathMatch: 'full'},
-    {path: 'recipes', component:RecipesComponent, canActivate: [AuthGuard], children: [
-        {path: '', component:RecipePlaceholderComponent },
-        {path: 'new', component: RecipeEditComponent},
-        {path: ':id', component:RecipeDetailComponent, resolve: [RecipeResolverService] },
-        {path: ':id/edit', component: RecipeEditComponent, resolve: [RecipeResolverService] }
-    ]},
     {path: 'shopping-list', component:ShoppingListComponent, children:[]},
     {path: 'login', component:AuthComponent},
     {path: 'page-not-found', component: PageNotFoundComponent},
