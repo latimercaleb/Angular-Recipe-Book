@@ -4,6 +4,7 @@ import { ShoppingEditComponent } from "./shopping-edit/shopping-edit.component";
 import { RouterModule, Routes } from "@angular/router";
 import { CommonModule } from "@angular/common";
 import { FormsModule } from "@angular/forms";
+import { SharedModule } from "../shared/shared.module";
 
 const shoppingRoutes: Routes = [
     {path: 'shopping-list', component:ShoppingListComponent, children:[]},
@@ -16,8 +17,8 @@ const shoppingRoutes: Routes = [
     ],
     imports: [
         RouterModule.forChild(shoppingRoutes),
-        CommonModule,
-        FormsModule
+        FormsModule,
+        SharedModule
     ]
 })
 export class ShoppingListModule {}

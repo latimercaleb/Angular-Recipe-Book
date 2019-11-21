@@ -20,21 +20,15 @@ import { PlaceholderDirective } from './shared/placeholder.directive';
 import { AppRoutingModule } from './app-routing.module';
 import { RecipesModule } from './recipes/recipes.module';
 import { ShoppingListModule } from './shopping-list/shopping-list.module';
+import { SharedModule } from './shared/shared.module';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-
-
-    DropdownDirective,
     PageNotFoundComponent,
-
-    AuthComponent,
-    Loader,
-    AlertComponent,
-    PlaceholderDirective
+    AuthComponent
   ],
   imports: [
     BrowserModule,
@@ -43,7 +37,8 @@ import { ShoppingListModule } from './shopping-list/shopping-list.module';
     HttpClientModule,
     RecipesModule,
     ShoppingListModule,
-    AppRoutingModule
+    AppRoutingModule,
+    SharedModule
   ],
   providers: [ShoppingListService, RecipeService, RecipeDataService, 
     {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true}],
