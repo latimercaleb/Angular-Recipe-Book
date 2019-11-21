@@ -21,10 +21,10 @@ import { CoreModule } from './core.module';
     PageNotFoundComponent,
     AuthComponent
   ],
+  // Outsource the auth component into it's own feature module
   imports: [
     BrowserModule,
     FormsModule,
-    ReactiveFormsModule,
     HttpClientModule,
     RecipesModule,
     ShoppingListModule,
