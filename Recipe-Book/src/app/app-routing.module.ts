@@ -1,12 +1,11 @@
 import { NgModule } from "@angular/core";
 import {Routes, RouterModule } from '@angular/router';
 
-import { ShoppingListComponent } from "./shopping-list/shopping-list.component";
-import { AuthComponent } from "./auth/auth.component";
 import { PageNotFoundComponent } from "./page-not-found/page-not-found.component";
 
 const routeArr: Routes = [
     {path: '', redirectTo: '/login', pathMatch: 'full'},
+    {path: 'recipes', loadChildren: './recipes/recipes.module.ts#RecipesModule'},
     {path: 'page-not-found', component: PageNotFoundComponent},
     {path: '**', redirectTo: '/page-not-found'}
 ];
