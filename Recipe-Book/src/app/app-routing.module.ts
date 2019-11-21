@@ -7,7 +7,6 @@ import { PageNotFoundComponent } from "./page-not-found/page-not-found.component
 
 const routeArr: Routes = [
     {path: '', redirectTo: '/login', pathMatch: 'full'},
-    {path: 'login', component:AuthComponent},
     {path: 'page-not-found', component: PageNotFoundComponent},
     {path: '**', redirectTo: '/page-not-found'}
 ];
