@@ -5,7 +5,7 @@ import { PageNotFoundComponent } from "./page-not-found/page-not-found.component
 
 const routeArr: Routes = [
     {path: '', redirectTo: '/login', pathMatch: 'full'},
-    {path: 'recipes', loadChildren: './recipes/recipes.module.ts#RecipesModule'},
+    {path: 'recipes', loadChildren: './recipes/recipes.module#RecipesModule'},
     {path: 'page-not-found', component: PageNotFoundComponent},
     {path: '**', redirectTo: '/page-not-found'}
 ];
