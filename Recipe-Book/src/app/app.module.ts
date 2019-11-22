@@ -7,10 +7,8 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { AppRoutingModule } from './app-routing.module';
-import { ShoppingListModule } from './shopping-list/shopping-list.module';
 import { SharedModule } from './shared/shared.module';
 import { CoreModule } from './core.module';
-import { AuthModule } from './auth/auth.module';
 
 
 @NgModule({
@@ -23,8 +21,6 @@ import { AuthModule } from './auth/auth.module';
     BrowserModule,
     FormsModule,
     HttpClientModule,
-    ShoppingListModule,
-    AuthModule,
     AppRoutingModule,
     SharedModule,
     CoreModule
